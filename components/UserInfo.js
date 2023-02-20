@@ -19,5 +19,4 @@ export default class UserInfo {
     profileWork(this._work);
     profileImage(this._image);
   }
-
 }

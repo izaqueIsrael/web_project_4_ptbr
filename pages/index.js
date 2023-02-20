@@ -1,5 +1,3 @@
-// CSS
-import './index.css';
 // Card
 import Card from '../components/Card.js';
 // Popup
@@ -13,22 +11,9 @@ import PopupWithForm from '../components/PopupWithForm.js';
 // validate Forms
 import FormValidator from '../components/FormValidator.js';
 // constants
-import { validation, formElementsToBeValidated, initialCards } from '../utils/constants.js';
+import { validation, formElementsToBeValidated, initialCards, posts } from '../utils/constants.js';
 // userInfo
 import UserInfo from '../components/UserInfo.js';
-// Images Render
-import ImagesRender from '../components/ImagesRender.js';
-// images and icons
-import { buttonAddIcon, favicon, closeIcon, buttonEditIcon, profileImage, likeButton, logo, trashIcon, likeButtonActived } from '../utils/constants.js';
-
-const imagesRender = new ImagesRender();
-imagesRender.insertInPage({ local: '.logo', link: logo });
-imagesRender.insertInPage({ local: '.edit', link: buttonEditIcon });
-imagesRender.insertInPage({ local: '.add', link: buttonAddIcon });
-imagesRender.insertInPage({ local: '.popup__icon', link: closeIcon });
-imagesRender.insertInPage({ local: '.post__delete__image', link: trashIcon });
-console.log(document.querySelectorAll('.post__delete__image'))
-console.log('nao aguento mais KKKKKKKKKKKKKKKKKKKKKKK')
 
 // PopupWithForm
 const editForm = new PopupWithForm({ form: 'formEdit', firstInput: 'formName', secondInput: 'formDescription' });
@@ -49,7 +34,7 @@ const prepareValidations = new FormValidator(validation, formElementsToBeValidat
 prepareValidations.enableValidation();
 
 // UserInfo
-const userInfo = new UserInfo({ name: 'Othmar Garithos', work: 'I did nothing wrong', image: profileImage });
+const userInfo = new UserInfo({ name: 'Othmar Garithos', work: 'I did nothing wrong', image: './images/Garithos_portrait.webp' });
 userInfo.setUserInfo();
 
 // Section

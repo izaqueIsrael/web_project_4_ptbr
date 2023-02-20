@@ -1,23 +1,3 @@
-// Images
-import buttonAddIcon from '../images/add.png';
-import favicon from '../images/allianceFavicon2.png';
-import closeIcon from '../images/close.png';
-import buttonEditIcon from '../images/edit.png';
-import profileImage from '../images/Garithos_portrait.webp';
-import likeButton from '../images/like.svg';
-import logo from '../images/logo.svg';
-import trashIcon from '../images/trash.svg';
-import likeButtonActived from '../images/union.png';
-import dalaran from '../images/cities/dalaran.jpg';
-import guilneas from '../images/cities/guilneas.jpg';
-import kultiras from '../images/cities/kultiras.jpg';
-import alterac from '../images/cities/ruinsOfAlterac.webp';
-import lordaeron from '../images/cities/ruinsOfLordaeron.jpg';
-import stormwind from '../images/cities/stormwind.jpg';
-import stromgarde from '../images/cities/stromgarde.webp';
-
-export { buttonAddIcon, favicon, closeIcon, buttonEditIcon, profileImage, likeButton, logo, trashIcon, likeButtonActived };
-
 // FormValidator
 export const validation = {
   inputSelector: '.form__input',
@@ -45,31 +25,31 @@ export const formElementsToBeValidated = {
 export const initialCards = [
   {
     name: 'Dalaran',
-    link: dalaran,
+    link: './images/cities/dalaran.jpg',
   },
   {
     name: 'Guilnéas',
-    link: guilneas,
+    link: './images/cities/guilneas.jpg',
   },
   {
     name: "Kul'Tiras",
-    link: kultiras,
+    link: './images/cities/kultiras.jpg',
   },
   {
     name: 'Alterac',
-    link: alterac,
+    link: './images/cities/ruinsOfAlterac.webp',
   },
   {
     name: 'Ruins of Lordaeron',
-    link: lordaeron,
+    link: './images/cities/ruinsOfLordaeron.jpg',
   },
   {
     name: 'Stormwind',
-    link: stormwind,
+    link: './images/cities/stormwind.jpg',
   },
   {
     name: 'Stromgarde',
-    link: stromgarde,
+    link: './images/cities/stromgarde.webp',
   },
 ];
 
@@ -80,4 +60,5 @@ export const modalImage = document.querySelector('#modal__image');
 export const modalDescription = document.querySelector('#modal__description');
 
 // section
+
 export const posts = '.posts'

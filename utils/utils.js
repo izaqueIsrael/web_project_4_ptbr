@@ -1,6 +1,5 @@
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import { cardVars } from "./constants.js";
 const imageCardPopup = new PopupWithImage();
 
 export const createNewCard = (title, link) => {
@@ -18,5 +17,5 @@ export const profileWork = (work) => {
 }
 
 export const profileImage = (image) => {
-  document.querySelector('.profile__image').setAttribute('src', `${image}`);
+  document.querySelector('.profile__image').src = `${image}`;
 }
