@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <!-- head -->
+
 <head>
+  <link rel="icon" href="images/allianceFavicon2.png" type="image/png">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Around The US</title>
 </head>
 <!-- body -->
+
 <body class="body">
   <main class="main">
     <header class="header">
@@ -35,9 +38,8 @@
   <!-- post template -->
   <template id="post__template">
     <div class="post">
-      <div class="post__image">
-        <button class="button post__delete"><img class="post__delete__image" alt="delete post"></button>
-      </div>
+      <img class="post__image" src="caminho-da-imagem.jpg">
+      <button class="button post__delete"><img class="post__delete__image" alt="delete post"></button>
       <div class="post__container">
         <h2 class="title post__title"></h2>
         <button class="button post__button button__image"></button>
@@ -51,11 +53,11 @@
       <h2 class="title modal__title">Editar perfil</h2>
       <div>
         <input class="form__input form__name" name="formName" id="name" type="text" placeholder="">
-        <label class="form__description form__description_error"></label>
+        <label for="name" class="form__description form__description_error"></label>
       </div>
       <div>
         <input class="form__input form__status" name="formDescription" id="status" type="text" placeholder="">
-        <label class="form__description form__description_error"></label>
+        <label for status class="form__description form__description_error"></label>
       </div>
       <button type="submit" class="button modal__button modal__button_disabled" id="edit__button" disabled><span
           class="button__text button__text_disabled">Salvar</span></button>
@@ -67,12 +69,14 @@
     <form class="form modal" id="form__add" name="formAdd">
       <h2 class="title modal__title">Novo local</h2>
       <div>
-        <input name="formTitle" class="form__input form__input_add form__title" type="text" placeholder="Ti&#769;tulo">
-        <span class="form__description form__description_error"></span>
+        <input name="formTitle" class="form__input form__input_add form__title" id="title" type="text"
+          placeholder="Ti&#769;tulo">
+        <label for="title" class="form__description form__description_error"></label>
       </div>
       <div>
-        <input name="formLink" class="form__input form__input_add form__link" type="text" placeholder="Link de imagem">
-        <span class="form__description form__description_error"></span>
+        <input name="formLink" class="form__input form__input_add form__link" id="link" type="text"
+          placeholder="Link de imagem">
+        <label for="link" class="form__description form__description_error"></label>
       </div>
 
       <button type="submit" class="button modal__button modal__button_disabled" id="add__button" disabled><span

@@ -1,6 +1,5 @@
 // Images
 import buttonAddIcon from '../images/add.png';
-import favicon from '../images/allianceFavicon2.png';
 import closeIcon from '../images/close.png';
 import buttonEditIcon from '../images/edit.png';
 import profileImage from '../images/Garithos_portrait.webp';
@@ -16,7 +15,7 @@ import lordaeron from '../images/cities/ruinsOfLordaeron.jpg';
 import stormwind from '../images/cities/stormwind.jpg';
 import stromgarde from '../images/cities/stromgarde.webp';
 
-export { buttonAddIcon, favicon, closeIcon, buttonEditIcon, profileImage, likeButton, logo, trashIcon, likeButtonActived };
+export { buttonAddIcon, closeIcon, buttonEditIcon, profileImage, likeButton, logo, trashIcon, likeButtonActived };
 
 // FormValidator
 export const validation = {
@@ -35,10 +34,13 @@ export const validation = {
 };
 
 export const formElementsToBeValidated = {
-  formName: 'form__name',
-  formStatus: 'form__status',
-  formTitle: 'form__title',
-  formLink: 'form__link',
+  formName: { selector: 'form__name', range: 40 },
+  formStatus: { selector: 'form__status', range: 200 },
+  formTitle: { selector: 'form__title', range: 30 },
+  formLink: { selector: 'form__link' },
+  inputWithZeroCharacteresLenght: 0,
+  inputWithOneCharacter: 1,
+  inputEqualToOrGreaterThanTwoCharacteres: 2
 };
 
 // Card

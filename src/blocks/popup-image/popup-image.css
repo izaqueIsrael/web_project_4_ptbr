@@ -6,7 +6,7 @@
 }
 
 @media screen and (min-width: 20rem) and (max-width: 768px) {
-  .popup-image{
+  .popup-image {
     height: auto;
     margin: auto;
     width: 75%;

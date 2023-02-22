@@ -26,7 +26,8 @@ export default class Card extends Popup {
 
   _templateCorpeSets(templateCorpe) {
     templateCorpe.querySelector('.post__title').textContent = this._name;
-    templateCorpe.querySelector('.post__image').style.backgroundImage = `url(${this._link})`;
+    templateCorpe.querySelector('.post__image').src = this._link;
+    templateCorpe.querySelector('.post__image').setAttribute('alt', `${this._name}`)
     templateCorpe.querySelector('.post__delete__image').src = `${trashIcon}`;
     templateCorpe.querySelector('.post__button').style.backgroundImage = `url(${likeButton})`;
   }

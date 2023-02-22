@@ -22,18 +22,18 @@ export default class PopupWithImage extends Popup {
   }
 
   _imageCardManager(e) {
+    this._adjustImageWidth();
     this._handleEscClose();
     this._imageModalOpen();
     this._renderer(e);
-    this._adjustImageWidth();
   }
 
   _renderer(e) {
-    const imageSource = e.target.style.backgroundImage;
-    const imageTitle = e.target.nextElementSibling.firstElementChild.textContent;
-    const imageAux = imageSource.slice(5, imageSource.length - 2);
+    const imageSource = e.target.src;
+    const imageTitle = e.target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
     modalDescription.textContent = imageTitle;
-    modalImage.src = `${imageAux}`;
+    modalImage.src = `${imageSource}`;
+    modalImage.setAttribute('alt', `${imageTitle}`)
   }
 
   _imageModalOpen() {

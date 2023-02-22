@@ -19,4 +19,5 @@ export const profileWork = (work) => {
 
 export const profileImage = (image) => {
   document.querySelector('.profile__image').setAttribute('src', `${image}`);
+  document.querySelector('.profile__image').setAttribute('alt', `Imagem de perfil do usuário`)
 }
