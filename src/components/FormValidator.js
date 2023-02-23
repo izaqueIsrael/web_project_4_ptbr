@@ -33,8 +33,6 @@ export default class FormValidator {
     this._inputEqualToOrGreaterThanTwoCharacteres = formElementsToBeValidated.inputEqualToOrGreaterThanTwoCharacteres;
   }
 
-  //Eu sei que poderia deixar quase que toda essa validação diretamente por html, mas quero manter assim para praticar js
-
   enableValidation() {
     document
       .querySelectorAll(this.inputSelector)
