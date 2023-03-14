@@ -22,7 +22,7 @@ export const validation = {
   submitButtonSelector: '.modal__button',
   editButton: '#edit__button',
   addButton: '#add__button',
-  avatarButton: '.avatar__button',
+  avatarButton: '.button_avatar',
   inputNameClass: '.form__name',
   inputStatusClass: '.form__status',
   inputTitleClass: '.form__title',
