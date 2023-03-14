@@ -419,7 +419,7 @@ template {
   margin: 0;
   padding: 0;
   width: 1.3125rem;
-  background: url(/e2bcc6fb2ec4f4fb5583.svg) center no-repeat;
+  background: url(./e2bcc6fb2ec4f4fb5583.svg) center no-repeat;
 }
 .button__text {
   font-weight: 400;
@@ -654,7 +654,7 @@ template {
   margin: 1.125rem;
 }
 .post__button_active {
-  background: url(/e5cc06b754417b15f767.png) center no-repeat;
+  background: url(./e5cc06b754417b15f767.png) center no-repeat;
 }
 .footer {
   display: flex;
