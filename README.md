@@ -45,7 +45,7 @@ A utilizo para gestão de dados do projeto
 
 .editorconfig para indentação e .nojekyll para funcionamento do github pages
 
-###Funcionalidades
+### Funcionalidades
 
 * Editar nome 
 * Editar status
@@ -55,7 +55,7 @@ A utilizo para gestão de dados do projeto
 * Dar like no post
 * Ampliar o post
 
-###Objetivo
+### Objetivo
 
 Demonstrar aptidão com as tecnologias envolvidas por meio da criação de um projeto que utiliza uma API para realizar requisições, exclusões e alterações de dados através dela.
 
