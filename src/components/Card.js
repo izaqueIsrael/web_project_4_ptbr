@@ -74,14 +74,12 @@ export default class Card extends Popup {
         like.classList.add('post__button_active');
         this._user.addLike(this._id, this._user.token);
         e.target.nextElementSibling.textContent = `${Number(e.target.nextElementSibling.textContent) + 1}`;
-        console.log(this._user.getUserInfo())
       }
       else {
         like.style.backgroundImage = `url(${likeButton})`;
         like.classList.remove('post__button_active');
         this._user.removeLike(this._id, this._user.token);
         e.target.nextElementSibling.textContent = `${Number(e.target.nextElementSibling.textContent) - 1}`;
-        console.log(this._user.getUserInfo())
       }
     });
 

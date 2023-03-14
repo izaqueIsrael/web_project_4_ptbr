@@ -62,11 +62,11 @@ export default class PopupWithForm extends Popup {
       submitButton.textContent = 'Criando...';
       this._addPopupFormInputEvent(firstInput);
       this._addPopupFormInputEvent(secondInput);
-      createNewCard(firstInput.value, secondInput.value)
       apiUserCard.updateCard({ newName: firstInput.value, newLink: secondInput.value })
         .then(() => {
           submitButton.textContent = 'Criar';
           form.reset();
+          form.submit()
           this.close();
         })
         .catch(error => {

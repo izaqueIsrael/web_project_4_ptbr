@@ -35,7 +35,7 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__container/profile__container.css);
 @import url(../blocks/profile/__content/profile__content.css);
-@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__pictures/__image/profile__image.css);
 @import url(../blocks/profile/__button/profile__button.css);
 
 /* posts */
@@ -84,76 +84,10 @@
 @import url(../blocks/form/__input/_error/form__input_error.css);
 @import url(../blocks/form/__description/_error/form__description_error.css);
 
-
-.info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: .1875rem;
-  margin-right: 1.125rem;
-}
-
-.like {
-  font-family: Inter;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin: 0;
-}
-
-.modal__button_delete {
-  max-width: 22.375rem;
-}
-
-.modal__title_delete {
-  margin: 0;
-}
-
-.popup_modal-delete {
-  max-width: 420px;
-}
-
-@media screen and (min-width: 20rem) and (max-width: 767px) {
-  .popup_modal-delete {
-    width: 17.625rem;
-  }
-}
-
-.profile__pictures {
-  position: relative;
-  z-index: 1;
-}
-
-@media screen and (min-width: 20rem) and (max-width: 767px) {
-  .profile__pictures {
-    margin-top: 2.375rem;
-  }
-}
-
-.cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, 0.8);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transform: scale(1.1);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  background-size: 20%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.cover:hover {
-  opacity: 1;
-  transform: scale(1);
-}
+@import url(../blocks/post/__container/info/info.css);
+@import url(../blocks/post/__container/info/like/like.css);
+@import url(../blocks/modal/__button/_delete/modal__button_delete);
+@import url(../blocks/modal/__title/_delete/modal__title_delete);
+@import url(../blocks/popup/_modal-delete/popup_modal-delete);
+@import url(../blocks/profile/__pictures/profile__pirctures);
+@import url(../blocks/profile/__pictures/cover/cover);

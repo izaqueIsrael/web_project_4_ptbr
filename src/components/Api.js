@@ -14,6 +14,15 @@ export default class Api {
       .then(res => res.json());
   }
 
+  _checkTheApiResponse(res) {
+    {
+      if (!res.ok) {
+        return Promise.reject(`${res.status} error!`);
+      }
+      return res.json();
+    }
+  }
+
   setUserInfo({ newName, newAbout }) {
     return fetch(this.link, {
       method: 'PATCH',
@@ -23,15 +32,7 @@ export default class Api {
       },
       body: JSON.stringify({ about: newAbout, name: newName })
     })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Erro ao atualizar informações do usuário');
-        }
-        return res.json();
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      .then((res) => this._checkTheApiResponse(res));
   }
 
   setUserAvatar(image) {
@@ -43,15 +44,7 @@ export default class Api {
       },
       body: JSON.stringify({ avatar: image })
     })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Erro ao atualizar informações do usuário');
-        }
-        return res.json();
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      .then((res) => this._checkTheApiResponse(res));
   }
 
   updateCard({ newName, newLink }) {
@@ -63,15 +56,7 @@ export default class Api {
       },
       body: JSON.stringify({ createAt: actualDateTime, likes: [], link: `${newLink}`, name: `${newName}`, owner: apiUser.getUserInfo(), _id: newId })
     })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Erro ao atualizar informações do usuário');
-        }
-        return res.json();
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      .then((res) => this._checkTheApiResponse(res));
   }
 
   deleteCard(cardId) {
@@ -81,15 +66,7 @@ export default class Api {
         authorization: this.token
       }
     })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Erro ao deletar o cartão');
-        }
-        return res.json();
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      .then((res) => this._checkTheApiResponse(res));
   }
 
   addLike(cardId, token) {
@@ -100,7 +77,7 @@ export default class Api {
         'Content-Type': 'application/json'
       },
     })
-      .then(res => res)
+      .then((res) => this._checkTheApiResponse(res));
   }
 
   removeLike(cardId, token) {
@@ -111,6 +88,6 @@ export default class Api {
         'Content-Type': 'application/json'
       },
     })
-      .then(res => res)
+      .then((res) => this._checkTheApiResponse(res));
   }
 }
