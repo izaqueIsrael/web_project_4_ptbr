@@ -1,6 +1,5 @@
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import { cardVars } from "./constants.js";
 const imageCardPopup = new PopupWithImage();
 
 export const createNewCard = (title, link) => {

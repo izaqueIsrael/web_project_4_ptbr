@@ -30,10 +30,20 @@ export default class PopupWithImage extends Popup {
 
   _renderer(e) {
     const imageSource = e.target.src;
-    const imageTitle = e.target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
-    modalDescription.textContent = imageTitle;
+    modalDescription.textContent = this._targetSelector(e);
     modalImage.src = `${imageSource}`;
-    modalImage.setAttribute('alt', `${imageTitle}`)
+    modalImage.setAttribute('alt', `${this._targetSelector(e)}`)
+  }
+
+  _targetSelector(e) {
+    if (e.target.nextElementSibling.classList.contains('post__delete')) {
+      const imageTitle = e.target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+      return imageTitle
+    }
+    else {
+      const imageTitle = e.target.nextElementSibling.firstElementChild.textContent;
+      return imageTitle
+    }
   }
 
   _imageModalOpen() {

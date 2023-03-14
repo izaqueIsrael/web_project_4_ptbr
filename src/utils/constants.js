@@ -7,15 +7,10 @@ import likeButton from '../images/like.svg';
 import logo from '../images/logo.svg';
 import trashIcon from '../images/trash.svg';
 import likeButtonActived from '../images/union.png';
-import dalaran from '../images/cities/dalaran.jpg';
-import guilneas from '../images/cities/guilneas.jpg';
-import kultiras from '../images/cities/kultiras.jpg';
-import alterac from '../images/cities/ruinsOfAlterac.webp';
-import lordaeron from '../images/cities/ruinsOfLordaeron.jpg';
-import stormwind from '../images/cities/stormwind.jpg';
-import stromgarde from '../images/cities/stromgarde.webp';
+import pen from '../images/pen.svg'
+import Api from '../components/Api';
 
-export { buttonAddIcon, closeIcon, buttonEditIcon, profileImage, likeButton, logo, trashIcon, likeButtonActived };
+export { buttonAddIcon, closeIcon, buttonEditIcon, profileImage, likeButton, logo, trashIcon, likeButtonActived, pen };
 
 // FormValidator
 export const validation = {
@@ -27,10 +22,12 @@ export const validation = {
   submitButtonSelector: '.modal__button',
   editButton: '#edit__button',
   addButton: '#add__button',
+  avatarButton: '.avatar__button',
   inputNameClass: '.form__name',
   inputStatusClass: '.form__status',
   inputTitleClass: '.form__title',
-  inputLinkClass: '.form__link'
+  inputLinkClass: '.form__link',
+  inputAvatarClass: '.form__avatar'
 };
 
 export const formElementsToBeValidated = {
@@ -38,42 +35,11 @@ export const formElementsToBeValidated = {
   formStatus: { selector: 'form__status', range: 200 },
   formTitle: { selector: 'form__title', range: 30 },
   formLink: { selector: 'form__link' },
+  formAvatar: { selector: 'form__avatar' },
   inputWithZeroCharacteresLenght: 0,
   inputWithOneCharacter: 1,
   inputEqualToOrGreaterThanTwoCharacteres: 2
 };
-
-// Card
-export const initialCards = [
-  {
-    name: 'Dalaran',
-    link: dalaran,
-  },
-  {
-    name: 'Guilnéas',
-    link: guilneas,
-  },
-  {
-    name: "Kul'Tiras",
-    link: kultiras,
-  },
-  {
-    name: 'Alterac',
-    link: alterac,
-  },
-  {
-    name: 'Ruins of Lordaeron',
-    link: lordaeron,
-  },
-  {
-    name: 'Stormwind',
-    link: stormwind,
-  },
-  {
-    name: 'Stromgarde',
-    link: stromgarde,
-  },
-];
 
 // imageCard
 export const imageModal = document.querySelector('#image__modal');
@@ -83,3 +49,11 @@ export const modalDescription = document.querySelector('#modal__description');
 
 // section
 export const posts = '.posts'
+
+// API
+export const cardList = document.querySelector('.posts');
+export const apiUser = new Api({ token: 'fd9c323e-e9d0-40a3-963c-a9bd242da440', link: 'https://around.nomoreparties.co/v1/web_ptbr_cohort_02/users/me' });
+export const apiUserCard = new Api({ token: 'fd9c323e-e9d0-40a3-963c-a9bd242da440', link: 'https://around.nomoreparties.co/v1/web_ptbr_cohort_02/cards' });
+export const newId = Math.random().toString(36).substring(2) + Date.now().toString(36);
+const actualDate = new Date();
+export const actualDateTime = actualDate.toLocaleString();

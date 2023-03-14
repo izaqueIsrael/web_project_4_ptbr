@@ -19,7 +19,10 @@
     </header>
     <section class="profile">
       <div class="profile__container">
-        <img class="profile__image" alt="profile picture">
+        <div class="profile__pictures">
+          <img class="profile__image" alt="profile picture">
+          <div class="cover"></div>
+        </div>
         <div class="profile__titles">
           <div class="profile__content">
             <h1 class="title profile__title"></h1>
@@ -35,6 +38,7 @@
       <h2 class="title footer__title">&copy; 2023 Around The U.S.</h2>
     </footer>
   </main>
+
   <!-- post template -->
   <template id="post__template">
     <div class="post">
@@ -42,10 +46,14 @@
       <button class="button post__delete"><img class="post__delete__image" alt="delete post"></button>
       <div class="post__container">
         <h2 class="title post__title"></h2>
-        <button class="button post__button button__image"></button>
+        <div class="info">
+          <button class="button post__button button__image"></button>
+          <p class="like">7</p>
+        </div>
       </div>
     </div>
   </template>
+
   <!-- modal de editar -->
   <div class="popup popup_closed popup-image" id="edit__modal">
     <button class="button popup__close" id="edit__close"><img class="popup__icon" alt="close"></button>
@@ -63,6 +71,7 @@
           class="button__text button__text_disabled">Salvar</span></button>
     </form>
   </div>
+
   <!-- modal de adicionar -->
   <div class="popup popup_closed popup-image" id="add__modal">
     <button class="button popup__close" id="add__close"><img class="popup__icon" alt="close"></button>
@@ -83,6 +92,31 @@
           class="button__text button__text_disabled">Criar</span></button>
     </form>
   </div>
+
+  <!-- Modal de mudar foto de perfil -->
+  <div class="popup popup_closed popup-image" id="edit__avatar">
+    <button class="button popup__close" id="edit__close"><img class="popup__icon" alt="close"></button>
+    <form class="form modal" id="form__avatar" name="formAvatar">
+      <h2 class="title modal__title">Alterar a foto do perfil</h2>
+      <div>
+        <input class="form__input form__avatar" name="formImage" id="avatar" type="text" placeholder="">
+        <label for="avatar" class="form__description form__description_error"></label>
+      </div>
+      <button type="submit" class="button modal__button modal__button_disabled avatar__button" id="avatar__button"
+        disabled><span class="button__text button__text_disabled">Salvar</span></button>
+    </form>
+  </div>
+
+  <!-- Modal de excluir cartão -->
+  <div class="popup popup_closed popup-image popup_modal-delete" id="delete__modal">
+    <button class="button popup__close" id="add__close"><img class="popup__icon" alt="close"></button>
+    <form class="form modal" id="form__add" name="formAdd">
+      <h2 class="title modal__title modal__title_delete">Tem certeza?</h2>
+      <button type="submit" class="button modal__button modal__button_delete" id="add__button"><span
+          class="button__text">Sim</span></button>
+    </form>
+  </div>
+
   <!-- modal imagem -->
   <div class="popup popup_closed popup-image" id="image__modal">
     <div class="popup-image__close" id="image__modal_close">
@@ -93,6 +127,7 @@
       <h2 class="title popup__text" id="modal__description"></h2>
     </div>
   </div>
+
   <!-- fade -->
   <div class="fade fade_closed"></div>
 </body>

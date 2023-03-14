@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
-import { initialCards } from "../utils/constants.js";
 import { createNewCard } from "../utils/utils.js";
+import { apiUser, apiUserCard } from "../utils/constants.js";
 
 export default class PopupWithForm extends Popup {
   constructor({ form, firstInput, secondInput }) {
@@ -23,19 +23,29 @@ export default class PopupWithForm extends Popup {
       this._formEditManager(form, firstInput, secondInput);
     if (form.id === 'form__add')
       this._formAddManager(form, firstInput, secondInput);
+    if (form.id === 'form__avatar')
+      this._formAvatarManager(form, firstInput);
   }
 
   // Popup Edit
   _formEditManager(form, firstInput, secondInput) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const submitButton = form.querySelector('.button__text');
+      submitButton.textContent = 'Salvando...';
       this._newProfileName(firstInput);
       this._newProfileDescription(secondInput);
-      form.reset();
-      this.close();
-    })
+      apiUser.setUserInfo({ newName: firstInput.value, newAbout: secondInput.value })
+        .then(() => {
+          submitButton.textContent = 'Salvar';
+          form.reset();
+          this.close();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    });
   }
-
   _newProfileName(formName) {
     document.querySelector('.profile__title').textContent = formName.value;
   }
@@ -48,28 +58,63 @@ export default class PopupWithForm extends Popup {
   _formAddManager(form, firstInput, secondInput) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const submitButton = form.querySelector('.button__text');
+      submitButton.textContent = 'Criando...';
       this._addPopupFormInputEvent(firstInput);
       this._addPopupFormInputEvent(secondInput);
-      this._newObjectInInitialCardArray(this._auxiliarArray(firstInput.value, secondInput.value));
-      createNewCard(firstInput.value, secondInput.value);
-      form.reset();
-      this.close();
+      createNewCard(firstInput.value, secondInput.value)
+      apiUserCard.updateCard({ newName: firstInput.value, newLink: secondInput.value })
+        .then(() => {
+          submitButton.textContent = 'Criar';
+          form.reset();
+          this.close();
+        })
+        .catch(error => {
+          console.error(error);
+        });
     });
   }
+
 
   _addPopupFormInputEvent(arg) {
     return arg.addEventListener('input', () => arg.value);
   }
 
-  _auxiliarArray(name, link) {
-    const auxiliar = {
-      name: `${name}`,
-      link: `${link}`,
-    };
-    return auxiliar;
+  //Avatar
+  _formAvatarManager(form, firstInput) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const submitButton = form.querySelector('.button__text');
+      submitButton.textContent = 'Salvando...';
+
+      this._newProfileAvatar(firstInput);
+      apiUser.setUserAvatar(firstInput.value)
+        .then(() => {
+          submitButton.textContent = 'Salvo';
+          form.reset();
+          this.close();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    });
   }
 
-  _newObjectInInitialCardArray(arg) {
-    initialCards.push(arg);
+  _newProfileAvatar(firstInput) {
+    document.querySelector('.profile__image').src = firstInput.value;
+  }
+
+  //API
+  _setProfileInfoInApi(firstInput, secondInput) {
+    apiUser.setUserInfo({ newName: firstInput.value, newAbout: secondInput.value });
+  }
+
+  _setCardInfoInApi(firstInput, secondInput) {
+    apiUserCard.updateCard({ newName: firstInput, newLink: secondInput });
+  }
+
+  _setAvatarInApi(link) {
+    apiUser.setUserAvatar(link);
   }
 }

@@ -2,8 +2,8 @@ import { formElementsToBeValidated } from "../utils/constants";
 
 export default class FormValidator {
   constructor(selectors, formsElements) {
-    const { inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, formDescription, buttonTextDisabled, editButton, addButton, inputNameClass, inputStatusClass, inputTitleClass, inputLinkClass } = selectors;
-    const { formName, formStatus, formTitle, formLink } = formsElements;
+    const { inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, formDescription, buttonTextDisabled, editButton, addButton, avatarButton, inputNameClass, inputStatusClass, inputTitleClass, inputLinkClass, inputAvatarClass } = selectors;
+    const { formName, formStatus, formTitle, formLink, formAvatar } = formsElements;
     // Object validation
     this.inputSelector = inputSelector;
     this._submitButtonSelector = submitButtonSelector;
@@ -13,15 +13,18 @@ export default class FormValidator {
     this._buttonTextDisabled = buttonTextDisabled;
     this._editButton = editButton;
     this._addButton = addButton;
+    this._avatarButton = avatarButton;
     this._inputNameClass = inputNameClass;
     this._inputStatusClass = inputStatusClass;
     this._inputTitleClass = inputTitleClass;
-    this._inputLinkClass = inputLinkClass
+    this._inputLinkClass = inputLinkClass;
+    this._inputAvatarClass = inputAvatarClass;
     // Object formElementsToBeValidated
     this._formNameSelector = formName.selector;
     this._formStatusSelector = formStatus.selector;
     this._formTitleSelector = formTitle.selector;
     this._formLinkSelector = formLink.selector;
+    this._formAvatarSelector = formAvatar.selector;
     // Ranges
     this._formNameRange = formName.range;
     this._formStatusRange = formStatus.range;
@@ -47,7 +50,9 @@ export default class FormValidator {
     if (e.target.classList.contains(this._formTitleSelector))
       this._checkInputValue({ target: e.target, range: this._formTitleRange, selector: this._submitButtonSelector, firstFormInputSelector: this._inputTitleClass, SecondFormInputSelector: this._inputLinkClass, selectorForButton: this._addButton });
     if (e.target.classList.contains(this._formLinkSelector))
-      this._checkURL(e.target);
+      this._checkURL({ target: e.target, selector: this._submitButtonSelector, firstFormInputSelector: this._inputTitleClass, SecondFormInputSelector: this._inputLinkClass, selectorForButton: this._addButton });
+    if (e.target.classList.contains(this._formAvatarSelector))
+      this._checkURL({ target: e.target, selector: this._submitButtonSelector, firstFormInputSelector: this._inputAvatarClass, SecondFormInputSelector: undefined, selectorForButton: this._avatarButton });
   }
 
   // Manager Functions
@@ -60,11 +65,11 @@ export default class FormValidator {
       this._rightCharacteres({ target, firstFormInputSelector, SecondFormInputSelector, selectorForButton });
   }
 
-  _checkURL(arg) {
-    if (this._isValidHttpUrl(arg.value) === true)
-      this._rightCharacteres({ target: arg, firstFormInputSelector: this._inputTitleClass, SecondFormInputSelector: this._inputLinkClass, selectorForButton: this._addButton });
+  _checkURL({ target, selector, firstFormInputSelector, SecondFormInputSelector, selectorForButton }) {
+    if (this._isValidHttpUrl(target.value) === true)
+      this._rightCharacteres({ target, firstFormInputSelector, SecondFormInputSelector, selectorForButton });
     else
-      this._invalidInputValue({ target: arg, text: 'Por favor, insira um endereço web', selector: this._submitButtonSelector, firstFormInputSelector: this._inputTitleClass, SecondFormInputSelector: this._inputLinkClass, selectorForButton: this._addButton });
+      this._invalidInputValue({ target, text: 'Por favor, insira um endereço web', selector, firstFormInputSelector, SecondFormInputSelector, selectorForButton });
   }
 
   //submanager functions
@@ -129,9 +134,17 @@ export default class FormValidator {
   _formValidationManager({ firstFormInputSelector, SecondFormInputSelector, selectorForButton }) {
     const theFirstInput = document.querySelector(firstFormInputSelector);
     const theSecondInput = document.querySelector(SecondFormInputSelector);
-    if (!theFirstInput.classList.contains(this._inputErrorClass) && !theSecondInput.classList.contains(this._inputErrorClass) && theFirstInput.value != '' && theSecondInput.value != '')
-      this._removeDisableButton(selectorForButton);
-    else
-      this._addDisableButton(selectorForButton);
+    if (theSecondInput === undefined || theSecondInput === null) {
+      if (!theFirstInput.classList.contains(this._inputErrorClass) && theFirstInput.value != '')
+        this._removeDisableButton(selectorForButton);
+      else
+        this._addDisableButton(selectorForButton);
+    }
+    else {
+      if (!theFirstInput.classList.contains(this._inputErrorClass) && !theSecondInput.classList.contains(this._inputErrorClass) && theFirstInput.value != '' && theSecondInput.value != '')
+        this._removeDisableButton(selectorForButton);
+      else
+        this._addDisableButton(selectorForButton);
+    }
   }
 }
