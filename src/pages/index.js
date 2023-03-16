@@ -5,10 +5,10 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import FormValidator from '../components/FormValidator.js';
-import { validation, formElementsToBeValidated, cardList, apiUser, apiUserCard } from '../utils/constants.js';
+import { validation, formElementsToBeValidated, cardList, apiUser, apiUserCard, buttonAddIcon, closeIcon, buttonEditIcon, logo, trashIcon, pen } from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
 import ImagesRender from '../components/ImagesRender.js';
-import { buttonAddIcon, closeIcon, buttonEditIcon, logo, trashIcon, pen } from '../utils/constants.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
 const imagesRender = new ImagesRender();
 imagesRender.insertInPage({ local: '.logo', link: logo });
@@ -41,8 +41,11 @@ apiUser.getUserInfo()
   })
   .catch(err => console.log(err));
 
+const thePopupWithConfirmation = new PopupWithConfirmation();
+
+
 Promise.all([apiUserCard.getUserInfo(), apiUser.getUserInfo()])
-  .then(([userData, owner]) => {
+  .then(([userData, master]) => {
     const createCard = (data) => {
       const card = new Card({
         name: data.name,
@@ -51,9 +54,10 @@ Promise.all([apiUserCard.getUserInfo(), apiUser.getUserInfo()])
         handleCardClick: imageCardPopup.handleCardClick(),
         like: data.likes,
         id: data._id,
-        owner: owner,
+        owner: master,
         data: data,
-        user: apiUserCard
+        user: apiUserCard,
+        deleteEvent: thePopupWithConfirmation
       });
       return card.setElementsInTemplate();
     };
@@ -61,4 +65,5 @@ Promise.all([apiUserCard.getUserInfo(), apiUser.getUserInfo()])
     section.renderer();
   })
   .catch(err => err);
+
 

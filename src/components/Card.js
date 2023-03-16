@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 import { likeButton, trashIcon, likeButtonActived } from '../utils/constants.js';
 export default class Card extends Popup {
-  constructor({ name, link, cardTemplate, handleCardClick, like, id, owner, data, user }) {
+  constructor({ name, link, cardTemplate, handleCardClick, like, id, owner, data, user, deleteEvent }) {
     super()
     this._name = name;
     this._link = link;
@@ -12,6 +12,7 @@ export default class Card extends Popup {
     this._owner = owner;
     this._data = data;
     this._user = user;
+    this._deleteEvent = deleteEvent;
   }
 
   _getTemplate() {
@@ -25,7 +26,7 @@ export default class Card extends Popup {
     this._templateCorpeSets(templateCorpe);
     this._likeEvent(templateCorpe);
     this._likedStatus(templateCorpe);
-    this._deletePostEvent(templateCorpe);
+    this._deleteEvent.deletePostEvent(templateCorpe, { owner: this._owner, data: this._data, id: this._id, user: this._user });
     this._removeDeleteButtonToNotOwnersPost(templateCorpe);
     return templateCorpe;
   }
@@ -82,42 +83,5 @@ export default class Card extends Popup {
         e.target.nextElementSibling.textContent = `${Number(e.target.nextElementSibling.textContent) - 1}`;
       }
     });
-
-  }
-
-  _deletePostEvent(templateCorpe) {
-    const deleteButton = templateCorpe.querySelector('.post__delete__image');
-    deleteButton.addEventListener('click', (e) => this._openDeletePopup(e));
-  }
-
-  _openDeletePopup(e) {
-    const modal = new Popup;
-    modal.open('.popup_modal-delete');
-    this._closeDeletePopup(modal, e);
-  }
-
-  _closeDeletePopup(modal, e) {
-    document.querySelector('.modal__button_delete').addEventListener('click', (event) => {
-      event.preventDefault();
-      modal.close();
-      this._deletePostInPage(e);
-      this._deletePostInServer();
-    });
-    if (JSON.stringify(this._owner._id) !== JSON.stringify(this._data.owner._id)) {
-      console.log('Você não tem permissão para excluir o cartão');
-    }
-  }
-
-  _deletePostInPage(e) {
-    e.target.parentElement.parentElement.remove();
-  }
-
-  _deletePostInServer() {
-    this._user.deleteCard(this._id);
-  }
-
-  _deleteCardButtonRender(e) {
-    if (JSON.stringify(this._owner) !== JSON.stringify(this._data.owner))
-      e.target.parentElement.remove();
   }
 }
